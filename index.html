@@ -457,12 +457,28 @@
   .customize-panel .btn-apply:hover { box-shadow: 0 4px 12px rgba(212,120,138,0.3); }
 
   .footer {
-    margin-top: 32px;
+    margin-top: 28px;
     color: var(--muted);
     font-size: 0.75rem;
     opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
   .footer a { color: var(--muted); text-decoration: none; }
+  .visitor-badge {
+    display: inline-block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    cursor: default;
+  }
+  .visitor-badge:hover { opacity: 1; }
+  .visitor-badge img {
+    display: block;
+    height: 20px;
+    border-radius: 4px;
+  }
 
   @media (max-width: 400px) {
     .wheel-wrapper { width: 280px; height: 280px; }
@@ -521,7 +537,10 @@
     </div>
   </div>
 
-  <p class="footer">Made with 💕 for 闺蜜 · 免费托管在 <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+  <p class="footer">
+    <span class="visitor-badge"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://qq1306894455-cyber.github.io/lunch-wheel/&count_bg=%23e8889a&title_bg=%23d4788a&icon=&icon_color=%23ffffff&title=%F0%9F%91%80+%E8%AE%BF%E9%97%AE&edge_flat=true" alt="访问人数" /></span>
+    Made with 💕 for 闺蜜 · 免费托管在 <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+  </p>
 </div>
 
 <script>
