@@ -111,6 +111,56 @@
     margin-bottom: 8px;
   }
 
+  /* ========== Mode Switcher ========== */
+  .mode-switcher {
+    display: flex;
+    gap: 0;
+    background: var(--surface);
+    border-radius: 50px;
+    padding: 4px;
+    margin-bottom: 20px;
+    border: 2px solid #f0d8e0;
+    box-shadow: 0 2px 8px rgba(200,150,170,0.1);
+    overflow: hidden;
+  }
+  .mode-tab {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+  }
+  .mode-tab.active {
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(212,120,138,0.3);
+  }
+  .mode-tab:hover:not(.active) {
+    color: var(--rose);
+    background: rgba(240,160,184,0.08);
+  }
+
+  /* ========== Calorie Badge ========== */
+  .calorie-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 8px;
+    animation: fadeIn 0.5s ease;
+  }
+  .calorie-badge.low { background: #d4edda; color: #2d6a4f; }
+  .calorie-badge.medium { background: #fff3cd; color: #856404; }
+  .calorie-badge.high { background: #fce4ec; color: #c0392b; }
+
   .subtitle {
     color: var(--muted);
     font-size: 0.88rem;
@@ -505,7 +555,14 @@
 
 <div class="container">
   <h1>🎀 今天吃什么？</h1>
-  <p class="subtitle">一步步缩小范围，让命运决定你的午餐！</p>
+
+  <!-- Mode Switcher -->
+  <div class="mode-switcher">
+    <button class="mode-tab active" onclick="switchMode('lunch')">🍚 午餐</button>
+    <button class="mode-tab" onclick="switchMode('tea')">🧋 奶茶</button>
+  </div>
+
+  <p class="subtitle" id="subtitle">一步步缩小范围，让命运决定你的午餐！</p>
 
   <!-- ========== QUIZ AREA ========== -->
   <div class="quiz-area" id="quizArea">
@@ -530,9 +587,9 @@
     <button class="btn-back" onclick="goBackToQuiz()">↩ 重新筛选</button>
     <button class="customize-toggle" onclick="toggleCustomize()">⚙️ 自定义菜单</button>
     <div class="customize-panel" id="customizePanel">
-      <h3>编辑菜单（一行一个，格式：emoji 菜名 | 肉类 | 辣度 | 汤类）</h3>
+      <h3 id="customizeTitle">编辑菜单（一行一个）</h3>
       <textarea id="menuInput"></textarea>
-      <p class="hint">标签用 | 分隔：🥩肉类(猪/牛/鸡/鱼/素/其他) | 🌶辣度(辣/微辣/不辣) | 🍜汤类(汤/干/都有)</p>
+      <p class="hint" id="customizeHint">标签用 | 分隔：🥩肉类(猪/牛/鸡/鱼/素/其他) | 🌶辣度(辣/微辣/不辣) | 🍜汤类(汤/干/都有)</p>
       <button class="btn-apply" onclick="applyMenu()">✅ 应用</button>
     </div>
   </div>
@@ -708,11 +765,89 @@ const defaultDishes = [
   { name: '🥬 小碗菜', emoji: '🥬', meat: '素', spicy: '微辣', soup: '干' },
 ];
 
+// ========== TEA DATABASE ==========
+// 格式: { name, emoji, type(奶茶/果茶/纯茶/咖啡), calories(大卡), hot(热/冷/都可) }
+const defaultTeas = [
+  // ==================== 奶茶类 ====================
+  { name: '🧋 珍珠奶茶', emoji: '🧋', type: '奶茶', calories: 420, hot: '冷' },
+  { name: '🧋 椰果奶茶', emoji: '🧋', type: '奶茶', calories: 380, hot: '冷' },
+  { name: '🧋 红豆奶茶', emoji: '🧋', type: '奶茶', calories: 400, hot: '都可' },
+  { name: '🧋 布丁奶茶', emoji: '🧋', type: '奶茶', calories: 390, hot: '冷' },
+  { name: '🧋 芋圆奶茶', emoji: '🧋', type: '奶茶', calories: 410, hot: '都可' },
+  { name: '🧋 黑糖珍珠奶茶', emoji: '🧋', type: '奶茶', calories: 460, hot: '都可' },
+  { name: '🥛 黑糖波波牛乳', emoji: '🥛', type: '奶茶', calories: 440, hot: '冷' },
+  { name: '🧋 阿萨姆奶茶', emoji: '🧋', type: '奶茶', calories: 350, hot: '都可' },
+  { name: '🧋 茉莉奶绿', emoji: '🧋', type: '奶茶', calories: 340, hot: '都可' },
+  { name: '🧋 烤奶', emoji: '🧋', type: '奶茶', calories: 360, hot: '热' },
+  { name: '🧋 鸳鸯奶茶', emoji: '🧋', type: '奶茶', calories: 320, hot: '都可' },
+  { name: '🧋 泰式奶茶', emoji: '🧋', type: '奶茶', calories: 380, hot: '冷' },
+  { name: '🧋 丝袜奶茶', emoji: '🧋', type: '奶茶', calories: 310, hot: '都可' },
+  { name: '🧋 焦糖奶茶', emoji: '🧋', type: '奶茶', calories: 400, hot: '都可' },
+  { name: '🧋 芝士奶盖茶', emoji: '🧋', type: '奶茶', calories: 450, hot: '冷' },
+  { name: '🧋 奥利奥奶茶', emoji: '🧋', type: '奶茶', calories: 430, hot: '冷' },
+  { name: '🍵 抹茶拿铁', emoji: '🍵', type: '奶茶', calories: 290, hot: '都可' },
+  { name: '🧋 大红袍奶茶', emoji: '🧋', type: '奶茶', calories: 320, hot: '热' },
+  { name: '🧋 白桃乌龙奶茶', emoji: '🧋', type: '奶茶', calories: 300, hot: '都可' },
+  { name: '🧋 芋泥波波奶茶', emoji: '🧋', type: '奶茶', calories: 430, hot: '都可' },
+
+  // ==================== 果茶类 ====================
+  { name: '🍋 满杯百香果', emoji: '🍋', type: '果茶', calories: 200, hot: '冷' },
+  { name: '🍋 柠檬绿茶', emoji: '🍋', type: '果茶', calories: 120, hot: '冷' },
+  { name: '🍇 葡萄果茶', emoji: '🍇', type: '果茶', calories: 180, hot: '冷' },
+  { name: '🥭 芒果果茶', emoji: '🥭', type: '果茶', calories: 220, hot: '冷' },
+  { name: '🍓 草莓果茶', emoji: '🍓', type: '果茶', calories: 170, hot: '冷' },
+  { name: '🍑 蜜桃乌龙', emoji: '🍑', type: '果茶', calories: 150, hot: '都可' },
+  { name: '🍊 金桔柠檬', emoji: '🍊', type: '果茶', calories: 110, hot: '冷' },
+  { name: '🍉 西瓜啵啵', emoji: '🍉', type: '果茶', calories: 160, hot: '冷' },
+  { name: '🍋 暴打柠檬茶', emoji: '🍋', type: '果茶', calories: 130, hot: '冷' },
+  { name: '🍊 满杯红柚', emoji: '🍊', type: '果茶', calories: 180, hot: '冷' },
+  { name: '🍍 菠萝百香果', emoji: '🍍', type: '果茶', calories: 190, hot: '冷' },
+  { name: '🍒 车厘子果茶', emoji: '🍒', type: '果茶', calories: 210, hot: '冷' },
+  { name: '🥝 奇异果茶', emoji: '🥝', type: '果茶', calories: 160, hot: '冷' },
+  { name: '🫐 蓝莓果茶', emoji: '🫐', type: '果茶', calories: 170, hot: '冷' },
+  { name: '🍋 冰摇柠檬茶', emoji: '🍋', type: '果茶', calories: 140, hot: '冷' },
+  { name: '🍊 棒打鲜橙', emoji: '🍊', type: '果茶', calories: 100, hot: '冷' },
+
+  // ==================== 纯茶类 ====================
+  { name: '🍵 茉莉绿茶', emoji: '🍵', type: '纯茶', calories: 10, hot: '热' },
+  { name: '🍵 乌龙茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
+  { name: '🍵 四季春茶', emoji: '🍵', type: '纯茶', calories: 8, hot: '都可' },
+  { name: '🍵 红茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
+  { name: '🍵 龙井绿茶', emoji: '🍵', type: '纯茶', calories: 3, hot: '热' },
+  { name: '🍵 铁观音', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
+  { name: '🍵 普洱', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
+  { name: '🍵 大麦茶', emoji: '🍵', type: '纯茶', calories: 2, hot: '热' },
+  { name: '🍵 菊花茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
+  { name: '🍵 桂花乌龙', emoji: '🍵', type: '纯茶', calories: 10, hot: '都可' },
+  { name: '🍵 白桃乌龙', emoji: '🍵', type: '纯茶', calories: 15, hot: '都可' },
+  { name: '🍵 玫瑰红茶', emoji: '🍵', type: '纯茶', calories: 10, hot: '热' },
+
+  // ==================== 咖啡类 ====================
+  { name: '☕ 美式咖啡', emoji: '☕', type: '咖啡', calories: 10, hot: '都可' },
+  { name: '☕ 拿铁', emoji: '☕', type: '咖啡', calories: 180, hot: '都可' },
+  { name: '☕ 卡布奇诺', emoji: '☕', type: '咖啡', calories: 140, hot: '热' },
+  { name: '☕ 摩卡', emoji: '☕', type: '咖啡', calories: 280, hot: '都可' },
+  { name: '☕ 焦糖玛奇朵', emoji: '☕', type: '咖啡', calories: 260, hot: '都可' },
+  { name: '☕ 馥芮白', emoji: '☕', type: '咖啡', calories: 120, hot: '热' },
+  { name: '☕ 冷萃咖啡', emoji: '☕', type: '咖啡', calories: 5, hot: '冷' },
+  { name: '☕ 生椰拿铁', emoji: '☕', type: '咖啡', calories: 200, hot: '冷' },
+  { name: '☕ 燕麦拿铁', emoji: '☕', type: '咖啡', calories: 160, hot: '都可' },
+  { name: '☕ 冰美式', emoji: '☕', type: '咖啡', calories: 8, hot: '冷' },
+  { name: '☕ 榛果拿铁', emoji: '☕', type: '咖啡', calories: 220, hot: '都可' },
+  { name: '☕ 香草拿铁', emoji: '☕', type: '咖啡', calories: 210, hot: '都可' },
+  { name: '☕ 抹茶拿铁', emoji: '☕', type: '咖啡', calories: 200, hot: '都可' },
+  { name: '☕ 澳白', emoji: '☕', type: '咖啡', calories: 90, hot: '热' },
+  { name: '☕ 椰青美式', emoji: '☕', type: '咖啡', calories: 60, hot: '冷' },
+  { name: '☕ 橙C美式', emoji: '☕', type: '咖啡', calories: 70, hot: '冷' },
+];
+
 let dishes = JSON.parse(JSON.stringify(defaultDishes));
+let teas = JSON.parse(JSON.stringify(defaultTeas));
 let filteredMenu = [];
+let currentMode = 'lunch'; // 'lunch' or 'tea'
 
 // ========== QUIZ STATE ==========
-const steps = [
+const lunchSteps = [
   {
     id: 'meat',
     question: '想吃哪种肉？',
@@ -749,12 +884,71 @@ const steps = [
   },
 ];
 
+const teaSteps = [
+  {
+    id: 'type',
+    question: '想喝什么类型？',
+    emoji: '🧋',
+    options: [
+      { label: '🧋 奶茶', value: '奶茶' },
+      { label: '🍋 果茶', value: '果茶' },
+      { label: '🍵 纯茶', value: '纯茶' },
+      { label: '☕ 咖啡', value: '咖啡' },
+      { label: '😎 随便', value: null, skip: true },
+    ]
+  },
+  {
+    id: 'hot',
+    question: '热的还是冷的？',
+    emoji: '🌡️',
+    options: [
+      { label: '🔥 热饮', value: '热' },
+      { label: '🧊 冷饮', value: '冷' },
+      { label: '😎 随便', value: null, skip: true },
+    ]
+  },
+  {
+    id: 'calories',
+    question: '热量有要求吗？',
+    emoji: '⚖️',
+    options: [
+      { label: '💚 低卡(<200)', value: 'low' },
+      { label: '💛 适中(200-350)', value: 'medium' },
+      { label: '❤️ 高卡(>350)', value: 'high' },
+      { label: '😎 随便', value: null, skip: true },
+    ]
+  },
+];
+
+let steps = [...lunchSteps];
 let currentStep = 0;
 let selections = { meat: null, spicy: null, soup: null };
 
+function switchMode(mode) {
+  if (mode === currentMode) return;
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.mode-tab')[mode === 'lunch' ? 0 : 1].classList.add('active');
+  document.getElementById('subtitle').textContent = mode === 'lunch'
+    ? '一步步缩小范围，让命运决定你的午餐！'
+    : '选一杯心仪的奶茶，热量一目了然！';
+  // Reset wheel section
+  document.getElementById('wheelSection').classList.remove('show');
+  document.getElementById('quizArea').style.display = '';
+  document.getElementById('result').innerHTML = '';
+  document.getElementById('history').innerHTML = '';
+  initQuiz();
+}
+
 function initQuiz() {
   currentStep = 0;
-  selections = { meat: null, spicy: null, soup: null };
+  if (currentMode === 'lunch') {
+    steps = [...lunchSteps];
+    selections = { meat: null, spicy: null, soup: null };
+  } else {
+    steps = [...teaSteps];
+    selections = { type: null, hot: null, calories: null };
+  }
   renderStep();
 }
 
@@ -806,7 +1000,8 @@ function updateFilterSummary() {
   const filtered = filterDishes();
   const countEl = document.getElementById('matchCount');
   if (chips.length > 0) {
-    countEl.textContent = `匹配 ${filtered.length} 道菜`;
+    const label = currentMode === 'lunch' ? '道菜' : '款饮品';
+    countEl.textContent = `匹配 ${filtered.length} ${label}`;
     countEl.className = 'match-count' + (filtered.length < 2 ? ' warn' : '');
   } else {
     countEl.textContent = '';
@@ -825,7 +1020,7 @@ function nextStep() {
   } else {
     filteredMenu = filterDishes();
     if (filteredMenu.length === 0) {
-      alert('没有匹配的菜 😢 请放宽条件试试～');
+      alert(currentMode === 'lunch' ? '没有匹配的菜 😢 请放宽条件试试～' : '没有匹配的饮品 😢 请放宽条件试试～');
       return;
     }
     showWheel();
@@ -833,12 +1028,25 @@ function nextStep() {
 }
 
 function filterDishes() {
-  return dishes.filter(d => {
-    if (selections.meat && d.meat !== selections.meat) return false;
-    if (selections.spicy && d.spicy !== selections.spicy) return false;
-    if (selections.soup && d.soup !== selections.soup) return false;
-    return true;
-  }).map(d => d.name);
+  if (currentMode === 'lunch') {
+    return dishes.filter(d => {
+      if (selections.meat && d.meat !== selections.meat) return false;
+      if (selections.spicy && d.spicy !== selections.spicy) return false;
+      if (selections.soup && d.soup !== selections.soup) return false;
+      return true;
+    }).map(d => d.name);
+  } else {
+    return teas.filter(t => {
+      if (selections.type && t.type !== selections.type) return false;
+      if (selections.hot && t.hot !== '都可' && t.hot !== selections.hot) return false;
+      if (selections.calories) {
+        if (selections.calories === 'low' && t.calories >= 200) return false;
+        if (selections.calories === 'medium' && (t.calories < 200 || t.calories > 350)) return false;
+        if (selections.calories === 'high' && t.calories <= 350) return false;
+      }
+      return true;
+    }).map(t => t.name);
+  }
 }
 
 // ========== WHEEL ==========
@@ -981,10 +1189,23 @@ function spin() {
 }
 
 function showResult(result) {
-  document.getElementById('result').innerHTML = `
-    <span class="result-emoji">${result.slice(0, 2)}</span>
-    <span class="result-text">今天吃：${result}</span>
-  `;
+  if (currentMode === 'tea') {
+    const teaData = teas.find(t => t.name === result);
+    const cal = teaData ? teaData.calories : 0;
+    let calLevel = 'medium';
+    if (cal < 200) calLevel = 'low';
+    else if (cal > 350) calLevel = 'high';
+    document.getElementById('result').innerHTML = `
+      <span class="result-emoji">${result.slice(0, 2)}</span>
+      <span class="result-text">今天喝：${result}</span>
+      <br><span class="calorie-badge ${calLevel}">🔥 ${cal} 大卡</span>
+    `;
+  } else {
+    document.getElementById('result').innerHTML = `
+      <span class="result-emoji">${result.slice(0, 2)}</span>
+      <span class="result-text">今天吃：${result}</span>
+    `;
+  }
 }
 
 function addHistory(item) {
@@ -1068,8 +1289,18 @@ function animateConfetti() {
 function toggleCustomize() {
   const panel = document.getElementById('customizePanel');
   const input = document.getElementById('menuInput');
+  const title = document.getElementById('customizeTitle');
+  const hint = document.getElementById('customizeHint');
   if (!panel.classList.contains('show')) {
-    input.value = dishes.map(d => `${d.name} | ${d.meat} | ${d.spicy} | ${d.soup}`).join('\n');
+    if (currentMode === 'lunch') {
+      title.textContent = '编辑午餐菜单（一行一个）';
+      hint.textContent = '标签用 | 分隔：🥩肉类(猪/牛/鸡/鱼/素/其他) | 🌶辣度(辣/微辣/不辣) | 🍜汤类(汤/干/都有)';
+      input.value = dishes.map(d => `${d.name} | ${d.meat} | ${d.spicy} | ${d.soup}`).join('\n');
+    } else {
+      title.textContent = '编辑奶茶菜单（一行一个）';
+      hint.textContent = '标签用 | 分隔：🧋类型(奶茶/果茶/纯茶/咖啡) | 🌡️冷热(热/冷/都可) | 🔥热量(大卡)';
+      input.value = teas.map(t => `${t.name} | ${t.type} | ${t.hot} | ${t.calories}`).join('\n');
+    }
     panel.classList.add('show');
   } else {
     panel.classList.remove('show');
@@ -1080,21 +1311,36 @@ function applyMenu() {
   const input = document.getElementById('menuInput').value.trim();
   if (!input) return;
   const lines = input.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-  if (lines.length < 2) {
-    alert('至少需要 2 道菜哦！');
+  const minItems = currentMode === 'lunch' ? 2 : 2;
+  if (lines.length < minItems) {
+    alert(currentMode === 'lunch' ? '至少需要 2 道菜哦！' : '至少需要 2 款饮品哦！');
     return;
   }
-  dishes = lines.map(line => {
-    const parts = line.split('|').map(p => p.trim());
-    const name = parts[0] || line;
-    return {
-      name: name,
-      emoji: name.slice(0, 2),
-      meat: parts[1] || '其他',
-      spicy: parts[2] || '不辣',
-      soup: parts[3] || '干'
-    };
-  });
+  if (currentMode === 'lunch') {
+    dishes = lines.map(line => {
+      const parts = line.split('|').map(p => p.trim());
+      const name = parts[0] || line;
+      return {
+        name: name,
+        emoji: name.slice(0, 2),
+        meat: parts[1] || '其他',
+        spicy: parts[2] || '不辣',
+        soup: parts[3] || '干'
+      };
+    });
+  } else {
+    teas = lines.map(line => {
+      const parts = line.split('|').map(p => p.trim());
+      const name = parts[0] || line;
+      return {
+        name: name,
+        emoji: name.slice(0, 2),
+        type: parts[1] || '其他',
+        hot: parts[2] || '都可',
+        calories: parseInt(parts[3]) || 200
+      };
+    });
+  }
   document.getElementById('customizePanel').classList.remove('show');
   goBackToQuiz();
   if (navigator.vibrate) navigator.vibrate(50);
