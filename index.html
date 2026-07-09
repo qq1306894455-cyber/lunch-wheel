@@ -768,78 +768,209 @@ const defaultDishes = [
 // ========== TEA DATABASE ==========
 // 格式: { name, emoji, type(奶茶/果茶/纯茶/咖啡), calories(大卡), hot(热/冷/都可) }
 const defaultTeas = [
-  // ==================== 奶茶类 ====================
-  { name: '🧋 珍珠奶茶', emoji: '🧋', type: '奶茶', calories: 420, hot: '冷' },
-  { name: '🧋 椰果奶茶', emoji: '🧋', type: '奶茶', calories: 380, hot: '冷' },
-  { name: '🧋 红豆奶茶', emoji: '🧋', type: '奶茶', calories: 400, hot: '都可' },
-  { name: '🧋 布丁奶茶', emoji: '🧋', type: '奶茶', calories: 390, hot: '冷' },
-  { name: '🧋 芋圆奶茶', emoji: '🧋', type: '奶茶', calories: 410, hot: '都可' },
-  { name: '🧋 黑糖珍珠奶茶', emoji: '🧋', type: '奶茶', calories: 460, hot: '都可' },
-  { name: '🥛 黑糖波波牛乳', emoji: '🥛', type: '奶茶', calories: 440, hot: '冷' },
-  { name: '🧋 阿萨姆奶茶', emoji: '🧋', type: '奶茶', calories: 350, hot: '都可' },
-  { name: '🧋 茉莉奶绿', emoji: '🧋', type: '奶茶', calories: 340, hot: '都可' },
-  { name: '🧋 烤奶', emoji: '🧋', type: '奶茶', calories: 360, hot: '热' },
-  { name: '🧋 鸳鸯奶茶', emoji: '🧋', type: '奶茶', calories: 320, hot: '都可' },
-  { name: '🧋 泰式奶茶', emoji: '🧋', type: '奶茶', calories: 380, hot: '冷' },
-  { name: '🧋 丝袜奶茶', emoji: '🧋', type: '奶茶', calories: 310, hot: '都可' },
-  { name: '🧋 焦糖奶茶', emoji: '🧋', type: '奶茶', calories: 400, hot: '都可' },
-  { name: '🧋 芝士奶盖茶', emoji: '🧋', type: '奶茶', calories: 450, hot: '冷' },
-  { name: '🧋 奥利奥奶茶', emoji: '🧋', type: '奶茶', calories: 430, hot: '冷' },
-  { name: '🍵 抹茶拿铁', emoji: '🍵', type: '奶茶', calories: 290, hot: '都可' },
-  { name: '🧋 大红袍奶茶', emoji: '🧋', type: '奶茶', calories: 320, hot: '热' },
-  { name: '🧋 白桃乌龙奶茶', emoji: '🧋', type: '奶茶', calories: 300, hot: '都可' },
-  { name: '🧋 芋泥波波奶茶', emoji: '🧋', type: '奶茶', calories: 430, hot: '都可' },
+  // ==================== 咖啡类 (45款) ====================
+  { name: '☕ 标准美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 5, hot: '都' },
+  { name: '☕ 冰美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 5, hot: '冷' },
+  { name: '☕ 冷萃咖啡 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 5, hot: '冷' },
+  { name: '☕ 橘金气泡美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 53, hot: '冷' },
+  { name: '☕ 茉莉花香美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 52, hot: '冷' },
+  { name: '☕ 柠C美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 70, hot: '冷' },
+  { name: '☕ 橙C美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 70, hot: '冷' },
+  { name: '☕ 柚C美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 80, hot: '冷' },
+  { name: '☕ 苹果C美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 98, hot: '冷' },
+  { name: '☕ 小黄油美式 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 136, hot: '冷' },
+  { name: '☕ 拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 130, hot: '都' },
+  { name: '☕ 生椰拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 170, hot: '冷' },
+  { name: '☕ 椰云拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 170, hot: '冷' },
+  { name: '☕ 厚乳拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 188, hot: '都' },
+  { name: '☕ 丝绒拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 260, hot: '都' },
+  { name: '☕ 燕麦拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 150, hot: '都' },
+  { name: '☕ 澳白 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 90, hot: '都' },
+  { name: '☕ 茉莉拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 140, hot: '都' },
+  { name: '☕ 珞珈山樱花拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 210, hot: '都' },
+  { name: '☕ 抹茶拿铁 (瑞幸)', emoji: '☕', type: '咖啡', brand: '瑞幸', calories: 190, hot: '都' },
+  { name: '☕ 美式咖啡 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 10, hot: '都' },
+  { name: '☕ 冰美式 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 10, hot: '冷' },
+  { name: '☕ 拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 150, hot: '都' },
+  { name: '☕ 生椰拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 180, hot: '冷' },
+  { name: '☕ 生酪拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 200, hot: '冷' },
+  { name: '☕ 燕麦拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 150, hot: '都' },
+  { name: '☕ 小黄油美式 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 129, hot: '冷' },
+  { name: '☕ 桃桃美式 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 125, hot: '冷' },
+  { name: '☕ 桂花酒酿拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 180, hot: '都' },
+  { name: '☕ 潘帕斯蓝生酪拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 240, hot: '冷' },
+  { name: '☕ 澳白 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 100, hot: '都' },
+  { name: '☕ 慕斯豆布奇诺 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 110, hot: '都' },
+  { name: '☕ 抹茶拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 190, hot: '都' },
+  { name: '☕ 高山抹茶清爽椰 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 195, hot: '冷' },
+  { name: '☕ 海盐芝士拿铁 (库迪)', emoji: '☕', type: '咖啡', brand: '库迪', calories: 180, hot: '都' },
+  { name: '☕ 星巴克 美式', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 10, hot: '都' },
+  { name: '☕ 星巴克 拿铁', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 130, hot: '都' },
+  { name: '☕ 星巴克 馥芮白', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 100, hot: '都' },
+  { name: '☕ 星巴克 冷萃', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 5, hot: '冷' },
+  { name: '☕ 星巴克 抹茶拿铁', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 180, hot: '都' },
+  { name: '☕ 星巴克 摩卡', emoji: '☕', type: '咖啡', brand: '星巴克', calories: 200, hot: '都' },
+  { name: '☕ 蜜雪冰城 雪顶咖啡', emoji: '☕', type: '咖啡', brand: '蜜雪冰城', calories: 160, hot: '冷' },
+  { name: '☕ 茶百道 拿铁', emoji: '☕', type: '咖啡', brand: '茶百道', calories: 110, hot: '都' },
+  { name: '☕ CoCo 拿铁', emoji: '☕', type: '咖啡', brand: 'CoCo都可', calories: 120, hot: '都' },
+  { name: '☕ CoCo 美式', emoji: '☕', type: '咖啡', brand: 'CoCo都可', calories: 5, hot: '都' },
 
-  // ==================== 果茶类 ====================
-  { name: '🍋 满杯百香果', emoji: '🍋', type: '果茶', calories: 200, hot: '冷' },
-  { name: '🍋 柠檬绿茶', emoji: '🍋', type: '果茶', calories: 120, hot: '冷' },
-  { name: '🍇 葡萄果茶', emoji: '🍇', type: '果茶', calories: 180, hot: '冷' },
-  { name: '🥭 芒果果茶', emoji: '🥭', type: '果茶', calories: 220, hot: '冷' },
-  { name: '🍓 草莓果茶', emoji: '🍓', type: '果茶', calories: 170, hot: '冷' },
-  { name: '🍑 蜜桃乌龙', emoji: '🍑', type: '果茶', calories: 150, hot: '都可' },
-  { name: '🍊 金桔柠檬', emoji: '🍊', type: '果茶', calories: 110, hot: '冷' },
-  { name: '🍉 西瓜啵啵', emoji: '🍉', type: '果茶', calories: 160, hot: '冷' },
-  { name: '🍋 暴打柠檬茶', emoji: '🍋', type: '果茶', calories: 130, hot: '冷' },
-  { name: '🍊 满杯红柚', emoji: '🍊', type: '果茶', calories: 180, hot: '冷' },
-  { name: '🍍 菠萝百香果', emoji: '🍍', type: '果茶', calories: 190, hot: '冷' },
-  { name: '🍒 车厘子果茶', emoji: '🍒', type: '果茶', calories: 210, hot: '冷' },
-  { name: '🥝 奇异果茶', emoji: '🥝', type: '果茶', calories: 160, hot: '冷' },
-  { name: '🫐 蓝莓果茶', emoji: '🫐', type: '果茶', calories: 170, hot: '冷' },
-  { name: '🍋 冰摇柠檬茶', emoji: '🍋', type: '果茶', calories: 140, hot: '冷' },
-  { name: '🍊 棒打鲜橙', emoji: '🍊', type: '果茶', calories: 100, hot: '冷' },
+  // ==================== 奶茶类 (76款) ====================
+  { name: '🧋 伯牙绝弦 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 130, hot: '都' },
+  { name: '🧋 桂馥兰香 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 121, hot: '都' },
+  { name: '🧋 去云南·玫瑰普洱 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 110, hot: '都' },
+  { name: '🧋 青青糯山 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 150, hot: '都' },
+  { name: '🧋 白雾红尘 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 163, hot: '都' },
+  { name: '🧋 万山红·金丝小种 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 128, hot: '都' },
+  { name: '🧋 花田乌龙 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 124, hot: '都' },
+  { name: '🧋 寻香山茶 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 100, hot: '都' },
+  { name: '🧋 桂子飘飘 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 135, hot: '都' },
+  { name: '🧋 春日桃桃 (霸王茶姬)', emoji: '🧋', type: '奶茶', brand: '霸王茶姬', calories: 120, hot: '都' },
+  { name: '🧋 幽兰拿铁 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 347, hot: '都' },
+  { name: '🧋 声声乌龙 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 150, hot: '都' },
+  { name: '🧋 桂花弄 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 120, hot: '都' },
+  { name: '🧋 蔓越阑珊 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 350, hot: '都' },
+  { name: '🧋 抹茶葡提·筝筝版 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 210, hot: '都' },
+  { name: '🧋 烟火易冷 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 170, hot: '都' },
+  { name: '🧋 素颜锡兰 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 150, hot: '都' },
+  { name: '🧋 人间烟火 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 170, hot: '都' },
+  { name: '🧋 筝筝纸鸢 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 150, hot: '都' },
+  { name: '🧋 浮生半日 (茶颜悦色)', emoji: '🧋', type: '奶茶', brand: '茶颜悦色', calories: 140, hot: '都' },
+  { name: '🧋 波霸奶茶 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 340, hot: '都' },
+  { name: '🧋 乌龙奶茶 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 140, hot: '都' },
+  { name: '🧋 四季奶青 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 120, hot: '都' },
+  { name: '🧋 红茶玛奇朵 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 176, hot: '都' },
+  { name: '🧋 乌龙玛奇朵 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 160, hot: '都' },
+  { name: '🧋 冰淇淋红茶 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 250, hot: '冷' },
+  { name: '🧋 阿华田 (一点点)', emoji: '🧋', type: '奶茶', brand: '一点点', calories: 300, hot: '都' },
+  { name: '🧋 珍珠奶茶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 300, hot: '都' },
+  { name: '🧋 奶茶三兄弟 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 350, hot: '都' },
+  { name: '🧋 鲜芋奶茶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 320, hot: '都' },
+  { name: '🧋 红豆奶茶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 280, hot: '都' },
+  { name: '🧋 茉香奶茶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 250, hot: '都' },
+  { name: '🧋 焦糖奶茶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 280, hot: '都' },
+  { name: '🧋 鲜芋青稞牛奶 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 310, hot: '都' },
+  { name: '🧋 鲜芋雪冰 (CoCo)', emoji: '🧋', type: '奶茶', brand: 'CoCo都可', calories: 300, hot: '冷' },
+  { name: '🧋 茉莉奶绿 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 140, hot: '都' },
+  { name: '🧋 芋圆奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 160, hot: '都' },
+  { name: '🧋 芋泥厚啵啵奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 335, hot: '都' },
+  { name: '🧋 血糯米奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 287, hot: '都' },
+  { name: '🧋 绿豆沙牛乳 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 130, hot: '冷' },
+  { name: '🧋 酒酿奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 200, hot: '都' },
+  { name: '🧋 原味奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 170, hot: '都' },
+  { name: '🧋 草莓牛乳 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 140, hot: '冷' },
+  { name: '🧋 桂花酒酿奶茶 (沪上阿姨)', emoji: '🧋', type: '奶茶', brand: '沪上阿姨', calories: 200, hot: '都' },
+  { name: '🧋 烤黑糖波波牛乳 (喜茶)', emoji: '🧋', type: '奶茶', brand: '喜茶', calories: 386, hot: '都' },
+  { name: '🧋 轻乳茶 (喜茶)', emoji: '🧋', type: '奶茶', brand: '喜茶', calories: 90, hot: '都' },
+  { name: '🧋 三倍厚抹 (喜茶)', emoji: '🧋', type: '奶茶', brand: '喜茶', calories: 180, hot: '都' },
+  { name: '🧋 绿妍轻乳茶 (喜茶)', emoji: '🧋', type: '奶茶', brand: '喜茶', calories: 100, hot: '都' },
+  { name: '🧋 生打椰冻 (喜茶)', emoji: '🧋', type: '奶茶', brand: '喜茶', calories: 130, hot: '冷' },
+  { name: '🧋 芋泥宝藏茶 (奈雪)', emoji: '🧋', type: '奶茶', brand: '奈雪', calories: 300, hot: '都' },
+  { name: '🧋 黑糖珠珠宝藏茶 (奈雪)', emoji: '🧋', type: '奶茶', brand: '奈雪', calories: 290, hot: '都' },
+  { name: '🧋 芝士茉莉初雪 (奈雪)', emoji: '🧋', type: '奶茶', brand: '奈雪', calories: 90, hot: '都' },
+  { name: '🧋 厚厚芋泥宝藏茶 (奈雪)', emoji: '🧋', type: '奶茶', brand: '奈雪', calories: 300, hot: '都' },
+  { name: '🧋 珍珠奶茶 (蜜雪冰城)', emoji: '🧋', type: '奶茶', brand: '蜜雪冰城', calories: 350, hot: '都' },
+  { name: '🧋 草莓摇摇奶昔 (蜜雪冰城)', emoji: '🧋', type: '奶茶', brand: '蜜雪冰城', calories: 250, hot: '冷' },
+  { name: '🧋 芝士奶盖四季春 (蜜雪冰城)', emoji: '🧋', type: '奶茶', brand: '蜜雪冰城', calories: 180, hot: '都' },
+  { name: '🧋 黑糖珍珠圣代 (蜜雪冰城)', emoji: '🧋', type: '奶茶', brand: '蜜雪冰城', calories: 380, hot: '冷' },
+  { name: '🧋 益禾烤奶 (益禾堂)', emoji: '🧋', type: '奶茶', brand: '益禾堂', calories: 300, hot: '都' },
+  { name: '🧋 薄荷奶绿 (益禾堂)', emoji: '🧋', type: '奶茶', brand: '益禾堂', calories: 140, hot: '都' },
+  { name: '🧋 什么都有 (古茗)', emoji: '🧋', type: '奶茶', brand: '古茗', calories: 433, hot: '都' },
+  { name: '🧋 牛油果巴旦木奶昔 (古茗)', emoji: '🧋', type: '奶茶', brand: '古茗', calories: 359, hot: '冷' },
+  { name: '🧋 超A芝士桃桃 (古茗)', emoji: '🧋', type: '奶茶', brand: '古茗', calories: 279, hot: '冷' },
+  { name: '🧋 香水椰椰拿铁 (古茗)', emoji: '🧋', type: '奶茶', brand: '古茗', calories: 325, hot: '冷' },
+  { name: '🧋 豆乳玉麒麟 (茶百道)', emoji: '🧋', type: '奶茶', brand: '茶百道', calories: 300, hot: '都' },
+  { name: '🧋 茉莉奶绿 (茶百道)', emoji: '🧋', type: '奶茶', brand: '茶百道', calories: 130, hot: '都' },
+  { name: '🧋 铁观音奶冻 (茶百道)', emoji: '🧋', type: '奶茶', brand: '茶百道', calories: 140, hot: '都' },
+  { name: '🧋 桂花酒酿 (茶百道)', emoji: '🧋', type: '奶茶', brand: '茶百道', calories: 160, hot: '都' },
+  { name: '🧋 草莓奶冻 (茶百道)', emoji: '🧋', type: '奶茶', brand: '茶百道', calories: 140, hot: '冷' },
+  { name: '🧋 招牌烧仙草 (书亦)', emoji: '🧋', type: '奶茶', brand: '书亦烧仙草', calories: 200, hot: '都' },
+  { name: '🧋 酸奶冰淇淋 (甜啦啦)', emoji: '🧋', type: '奶茶', brand: '甜啦啦', calories: 180, hot: '冷' },
+  { name: '🧋 茉莉奶白 (茉莉奶白)', emoji: '🧋', type: '奶茶', brand: '茉莉奶白', calories: 90, hot: '都' },
+  { name: '🧋 一朵茉莉花 (茉莉奶白)', emoji: '🧋', type: '奶茶', brand: '茉莉奶白', calories: 95, hot: '都' },
+  { name: '🧋 白兰 (茉莉奶白)', emoji: '🧋', type: '奶茶', brand: '茉莉奶白', calories: 85, hot: '都' },
+  { name: '🧋 爷爷茉莉奶白 (爷爷不泡茶)', emoji: '🧋', type: '奶茶', brand: '爷爷不泡茶', calories: 90, hot: '都' },
+  { name: '🧋 白桃乌龙 (爷爷不泡茶)', emoji: '🧋', type: '奶茶', brand: '爷爷不泡茶', calories: 100, hot: '都' },
+  { name: '🧋 桂花酒酿 (爷爷不泡茶)', emoji: '🧋', type: '奶茶', brand: '爷爷不泡茶', calories: 130, hot: '都' },
 
-  // ==================== 纯茶类 ====================
-  { name: '🍵 茉莉绿茶', emoji: '🍵', type: '纯茶', calories: 10, hot: '热' },
-  { name: '🍵 乌龙茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
-  { name: '🍵 四季春茶', emoji: '🍵', type: '纯茶', calories: 8, hot: '都可' },
-  { name: '🍵 红茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
-  { name: '🍵 龙井绿茶', emoji: '🍵', type: '纯茶', calories: 3, hot: '热' },
-  { name: '🍵 铁观音', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
-  { name: '🍵 普洱', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
-  { name: '🍵 大麦茶', emoji: '🍵', type: '纯茶', calories: 2, hot: '热' },
-  { name: '🍵 菊花茶', emoji: '🍵', type: '纯茶', calories: 5, hot: '热' },
-  { name: '🍵 桂花乌龙', emoji: '🍵', type: '纯茶', calories: 10, hot: '都可' },
-  { name: '🍵 白桃乌龙', emoji: '🍵', type: '纯茶', calories: 15, hot: '都可' },
-  { name: '🍵 玫瑰红茶', emoji: '🍵', type: '纯茶', calories: 10, hot: '热' },
+  // ==================== 果茶类 (60款) ====================
+  { name: '🍋 多肉葡萄 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 100, hot: '冷' },
+  { name: '🍋 芝芝莓莓 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 120, hot: '冷' },
+  { name: '🍋 满杯红柚 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 50, hot: '冷' },
+  { name: '🍋 芝芝绿妍 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 40, hot: '冷' },
+  { name: '🍋 超清爽百香果 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 55, hot: '冷' },
+  { name: '🍋 椰椰芒芒 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 130, hot: '冷' },
+  { name: '🍋 纯多肉莓莓 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 70, hot: '冷' },
+  { name: '🍋 嫩爆柠 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 55, hot: '冷' },
+  { name: '🍋 青提爆柠 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 80, hot: '冷' },
+  { name: '🍋 芝芝多肉青提 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 120, hot: '冷' },
+  { name: '🍋 芝芝桃桃 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 110, hot: '冷' },
+  { name: '🍋 冰山葡萄冻 (喜茶)', emoji: '🍋', type: '果茶', brand: '喜茶', calories: 90, hot: '冷' },
+  { name: '🍋 霸气橙子 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 100, hot: '冷' },
+  { name: '🍋 霸气草莓 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 120, hot: '冷' },
+  { name: '🍋 霸气葡萄 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 110, hot: '冷' },
+  { name: '🍋 霸气芝士芒果 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 160, hot: '冷' },
+  { name: '🍋 霸气芝士葡萄 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 180, hot: '冷' },
+  { name: '🍋 霸气杨梅 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 100, hot: '冷' },
+  { name: '🍋 霸气荔枝 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 110, hot: '冷' },
+  { name: '🍋 霸气脆芒芭乐 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 100, hot: '冷' },
+  { name: '🍋 杨枝甘露 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 180, hot: '冷' },
+  { name: '🍋 金色山脉 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 60, hot: '冷' },
+  { name: '🍋 芝士草莓 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 120, hot: '冷' },
+  { name: '🍋 霸气芝士水蜜桃 (奈雪)', emoji: '🍋', type: '果茶', brand: '奈雪', calories: 130, hot: '冷' },
+  { name: '🍋 超A芝士葡萄 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 334, hot: '冷' },
+  { name: '🍋 满杯杨梅 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 124, hot: '冷' },
+  { name: '🍋 芝士杨梅 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 303, hot: '冷' },
+  { name: '🍋 葡萄爆爆柠 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 140, hot: '冷' },
+  { name: '🍋 青橘西柚冰冰茶 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 170, hot: '冷' },
+  { name: '🍋 杨枝甘露 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 180, hot: '冷' },
+  { name: '🍋 芝士葡萄 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 334, hot: '冷' },
+  { name: '🍋 百香果双重奏 (古茗)', emoji: '🍋', type: '果茶', brand: '古茗', calories: 80, hot: '冷' },
+  { name: '🍋 茉莉手打柠檬茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 65, hot: '冷' },
+  { name: '🍋 白月光VC鲜柠水 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 45, hot: '冷' },
+  { name: '🍋 鸭屎香冰摇茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 45, hot: '冷' },
+  { name: '🍋 宝藏桂子油柠檬茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 70, hot: '冷' },
+  { name: '🍋 丰盈桃桃柚子茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 100, hot: '冷' },
+  { name: '🍋 清润桂香柚子茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 110, hot: '冷' },
+  { name: '🍋 梅烦恼 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 100, hot: '冷' },
+  { name: '🍋 传统手打柠檬茶 (柠季)', emoji: '🍋', type: '果茶', brand: '柠季', calories: 60, hot: '冷' },
+  { name: '🍋 冰鲜柠檬水 (蜜雪冰城)', emoji: '🍋', type: '果茶', brand: '蜜雪冰城', calories: 80, hot: '冷' },
+  { name: '🍋 棒打鲜橙 (蜜雪冰城)', emoji: '🍋', type: '果茶', brand: '蜜雪冰城', calories: 110, hot: '冷' },
+  { name: '🍋 满杯百香果 (蜜雪冰城)', emoji: '🍋', type: '果茶', brand: '蜜雪冰城', calories: 130, hot: '冷' },
+  { name: '🍋 柠檬红茶 (蜜雪冰城)', emoji: '🍋', type: '果茶', brand: '蜜雪冰城', calories: 75, hot: '冷' },
+  { name: '🍋 芒果冰沙 (蜜雪冰城)', emoji: '🍋', type: '果茶', brand: '蜜雪冰城', calories: 140, hot: '冷' },
+  { name: '🍋 杨枝甘露 (茶百道)', emoji: '🍋', type: '果茶', brand: '茶百道', calories: 180, hot: '冷' },
+  { name: '🍋 西瓜啵啵 (茶百道)', emoji: '🍋', type: '果茶', brand: '茶百道', calories: 100, hot: '冷' },
+  { name: '🍋 乌漆嘛黑 (茶百道)', emoji: '🍋', type: '果茶', brand: '茶百道', calories: 120, hot: '冷' },
+  { name: '🍋 生椰大满贯 (茶百道)', emoji: '🍋', type: '果茶', brand: '茶百道', calories: 180, hot: '冷' },
+  { name: '🍋 芒芒生打椰 (茶百道)', emoji: '🍋', type: '果茶', brand: '茶百道', calories: 130, hot: '冷' },
+  { name: '🍋 CoCo 百香果双响炮', emoji: '🍋', type: '果茶', brand: 'CoCo都可', calories: 110, hot: '冷' },
+  { name: '🍋 CoCo 芒果绿茶', emoji: '🍋', type: '果茶', brand: 'CoCo都可', calories: 90, hot: '冷' },
+  { name: '🍋 CoCo 柠檬绿茶', emoji: '🍋', type: '果茶', brand: 'CoCo都可', calories: 75, hot: '冷' },
+  { name: '🍋 一点点 葡萄柚绿', emoji: '🍋', type: '果茶', brand: '一点点', calories: 80, hot: '冷' },
+  { name: '🍋 沪上阿姨 杨枝甘露', emoji: '🍋', type: '果茶', brand: '沪上阿姨', calories: 170, hot: '冷' },
+  { name: '🍋 沪上阿姨 桃桃乌龙', emoji: '🍋', type: '果茶', brand: '沪上阿姨', calories: 100, hot: '冷' },
+  { name: '🍋 沪上阿姨 芝士葡萄', emoji: '🍋', type: '果茶', brand: '沪上阿姨', calories: 200, hot: '冷' },
+  { name: '🍋 书亦 葡萄芋圆冻冻', emoji: '🍋', type: '果茶', brand: '书亦烧仙草', calories: 120, hot: '冷' },
+  { name: '🍋 甜啦啦 一桶水果茶', emoji: '🍋', type: '果茶', brand: '甜啦啦', calories: 100, hot: '冷' },
+  { name: '🍋 益禾堂 西瓜汁', emoji: '🍋', type: '果茶', brand: '益禾堂', calories: 80, hot: '冷' },
 
-  // ==================== 咖啡类 ====================
-  { name: '☕ 美式咖啡', emoji: '☕', type: '咖啡', calories: 10, hot: '都可' },
-  { name: '☕ 拿铁', emoji: '☕', type: '咖啡', calories: 180, hot: '都可' },
-  { name: '☕ 卡布奇诺', emoji: '☕', type: '咖啡', calories: 140, hot: '热' },
-  { name: '☕ 摩卡', emoji: '☕', type: '咖啡', calories: 280, hot: '都可' },
-  { name: '☕ 焦糖玛奇朵', emoji: '☕', type: '咖啡', calories: 260, hot: '都可' },
-  { name: '☕ 馥芮白', emoji: '☕', type: '咖啡', calories: 120, hot: '热' },
-  { name: '☕ 冷萃咖啡', emoji: '☕', type: '咖啡', calories: 5, hot: '冷' },
-  { name: '☕ 生椰拿铁', emoji: '☕', type: '咖啡', calories: 200, hot: '冷' },
-  { name: '☕ 燕麦拿铁', emoji: '☕', type: '咖啡', calories: 160, hot: '都可' },
-  { name: '☕ 冰美式', emoji: '☕', type: '咖啡', calories: 8, hot: '冷' },
-  { name: '☕ 榛果拿铁', emoji: '☕', type: '咖啡', calories: 220, hot: '都可' },
-  { name: '☕ 香草拿铁', emoji: '☕', type: '咖啡', calories: 210, hot: '都可' },
-  { name: '☕ 抹茶拿铁', emoji: '☕', type: '咖啡', calories: 200, hot: '都可' },
-  { name: '☕ 澳白', emoji: '☕', type: '咖啡', calories: 90, hot: '热' },
-  { name: '☕ 椰青美式', emoji: '☕', type: '咖啡', calories: 60, hot: '冷' },
-  { name: '☕ 橙C美式', emoji: '☕', type: '咖啡', calories: 70, hot: '冷' },
+  // ==================== 纯茶类 (12款) ====================
+  { name: '🍵 霸王茶姬 云中绿', emoji: '🍵', type: '纯茶', brand: '霸王茶姬', calories: 0, hot: '都' },
+  { name: '🍵 霸王茶姬 酌红袍', emoji: '🍵', type: '纯茶', brand: '霸王茶姬', calories: 0, hot: '都' },
+  { name: '🍵 一点点 四季春茶', emoji: '🍵', type: '纯茶', brand: '一点点', calories: 5, hot: '都' },
+  { name: '🍵 一点点 茉莉绿茶', emoji: '🍵', type: '纯茶', brand: '一点点', calories: 5, hot: '都' },
+  { name: '🍵 一点点 桂香乌龙', emoji: '🍵', type: '纯茶', brand: '一点点', calories: 5, hot: '都' },
+  { name: '🍵 喜茶 纯绿妍茶后', emoji: '🍵', type: '纯茶', brand: '喜茶', calories: 0, hot: '都' },
+  { name: '🍵 奈雪 奈雪初露', emoji: '🍵', type: '纯茶', brand: '奈雪', calories: 5, hot: '都' },
+  { name: '🍵 奈雪 冻顶乌龙', emoji: '🍵', type: '纯茶', brand: '奈雪', calories: 5, hot: '都' },
+  { name: '🍵 蜜雪冰城 四季春茶', emoji: '🍵', type: '纯茶', brand: '蜜雪冰城', calories: 0, hot: '都' },
+  { name: '🍵 蜜雪冰城 原叶红茶', emoji: '🍵', type: '纯茶', brand: '蜜雪冰城', calories: 0, hot: '都' },
+  { name: '🍵 瑞幸 茉莉花茶', emoji: '🍵', type: '纯茶', brand: '瑞幸', calories: 0, hot: '都' },
+  { name: '🍵 瑞幸 乌龙茶', emoji: '🍵', type: '纯茶', brand: '瑞幸', calories: 0, hot: '都' },
+
 ];
+
 
 let dishes = JSON.parse(JSON.stringify(defaultDishes));
 let teas = JSON.parse(JSON.stringify(defaultTeas));
@@ -898,6 +1029,33 @@ const teaSteps = [
     ]
   },
   {
+    id: 'brand',
+    question: '想喝哪个品牌？',
+    emoji: '🏪',
+    options: [
+      { label: 'CoCo都可', value: 'CoCo都可' },
+      { label: '一点点', value: '一点点' },
+      { label: '书亦烧仙草', value: '书亦烧仙草' },
+      { label: '古茗', value: '古茗' },
+      { label: '喜茶', value: '喜茶' },
+      { label: '奈雪', value: '奈雪' },
+      { label: '库迪', value: '库迪' },
+      { label: '星巴克', value: '星巴克' },
+      { label: '柠季', value: '柠季' },
+      { label: '沪上阿姨', value: '沪上阿姨' },
+      { label: '爷爷不泡茶', value: '爷爷不泡茶' },
+      { label: '瑞幸', value: '瑞幸' },
+      { label: '甜啦啦', value: '甜啦啦' },
+      { label: '益禾堂', value: '益禾堂' },
+      { label: '茉莉奶白', value: '茉莉奶白' },
+      { label: '茶百道', value: '茶百道' },
+      { label: '茶颜悦色', value: '茶颜悦色' },
+      { label: '蜜雪冰城', value: '蜜雪冰城' },
+      { label: '霸王茶姬', value: '霸王茶姬' },
+      { label: '😎 随便', value: null, skip: true },
+    ]
+  },
+  {
     id: 'hot',
     question: '热的还是冷的？',
     emoji: '🌡️',
@@ -912,9 +1070,9 @@ const teaSteps = [
     question: '热量有要求吗？',
     emoji: '⚖️',
     options: [
-      { label: '💚 低卡(<200)', value: 'low' },
-      { label: '💛 适中(200-350)', value: 'medium' },
-      { label: '❤️ 高卡(>350)', value: 'high' },
+      { label: '💚 低卡(<150)', value: 'low' },
+      { label: '💛 适中(150-250)', value: 'medium' },
+      { label: '❤️ 高卡(>250)', value: 'high' },
       { label: '😎 随便', value: null, skip: true },
     ]
   },
@@ -947,7 +1105,7 @@ function initQuiz() {
     selections = { meat: null, spicy: null, soup: null };
   } else {
     steps = [...teaSteps];
-    selections = { type: null, hot: null, calories: null };
+    selections = { type: null, brand: null, hot: null, calories: null };
   }
   renderStep();
 }
@@ -1038,11 +1196,12 @@ function filterDishes() {
   } else {
     return teas.filter(t => {
       if (selections.type && t.type !== selections.type) return false;
+      if (selections.brand && t.brand !== selections.brand) return false;
       if (selections.hot && t.hot !== '都可' && t.hot !== selections.hot) return false;
       if (selections.calories) {
-        if (selections.calories === 'low' && t.calories >= 200) return false;
-        if (selections.calories === 'medium' && (t.calories < 200 || t.calories > 350)) return false;
-        if (selections.calories === 'high' && t.calories <= 350) return false;
+        if (selections.calories === 'low' && t.calories >= 150) return false;
+        if (selections.calories === 'medium' && (t.calories < 150 || t.calories > 250)) return false;
+        if (selections.calories === 'high' && t.calories <= 250) return false;
       }
       return true;
     }).map(t => t.name);
@@ -1192,13 +1351,15 @@ function showResult(result) {
   if (currentMode === 'tea') {
     const teaData = teas.find(t => t.name === result);
     const cal = teaData ? teaData.calories : 0;
+    const brand = teaData ? teaData.brand : '';
     let calLevel = 'medium';
-    if (cal < 200) calLevel = 'low';
-    else if (cal > 350) calLevel = 'high';
+    if (cal < 150) calLevel = 'low';
+    else if (cal > 250) calLevel = 'high';
     document.getElementById('result').innerHTML = `
       <span class="result-emoji">${result.slice(0, 2)}</span>
       <span class="result-text">今天喝：${result}</span>
       <br><span class="calorie-badge ${calLevel}">🔥 ${cal} 大卡</span>
+      <br><span style="font-size:0.8rem;color:var(--muted);margin-top:4px;display:inline-block;">🏪 ${brand}</span>
     `;
   } else {
     document.getElementById('result').innerHTML = `
@@ -1298,8 +1459,8 @@ function toggleCustomize() {
       input.value = dishes.map(d => `${d.name} | ${d.meat} | ${d.spicy} | ${d.soup}`).join('\n');
     } else {
       title.textContent = '编辑奶茶菜单（一行一个）';
-      hint.textContent = '标签用 | 分隔：🧋类型(奶茶/果茶/纯茶/咖啡) | 🌡️冷热(热/冷/都可) | 🔥热量(大卡)';
-      input.value = teas.map(t => `${t.name} | ${t.type} | ${t.hot} | ${t.calories}`).join('\n');
+      hint.textContent = '标签用 | 分隔：🧋类型(奶茶/果茶/纯茶/咖啡) | 🏪品牌 | 🌡️冷热(热/冷/都可) | 🔥热量(大卡)';
+      input.value = teas.map(t => `${t.name} | ${t.type} | ${t.brand} | ${t.hot} | ${t.calories}`).join('\n');
     }
     panel.classList.add('show');
   } else {
@@ -1336,8 +1497,9 @@ function applyMenu() {
         name: name,
         emoji: name.slice(0, 2),
         type: parts[1] || '其他',
-        hot: parts[2] || '都可',
-        calories: parseInt(parts[3]) || 200
+        brand: parts[2] || '自定义',
+        hot: parts[3] || '都可',
+        calories: parseInt(parts[4]) || 200
       };
     });
   }
